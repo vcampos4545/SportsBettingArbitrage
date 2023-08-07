@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %} Arbitrage {% endblock %}
+
+{% block style %} 
+<style>
+    body {
+        background-color: #292929;
+        color: #fff;
+    }
+
+    .table {
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    th,
+    td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #666;
+    }
+
+    th {
+        background-color: #444;
+    }
+
+    tr:nth-child(even) {
+        background-color: #333;
+    }
+
+    tr:hover {
+        background-color: #555;
+    }
+</style>
+{% endblock %}
+
+{% block content %} 
+<h1>Arbitrage Dashboard</h1>
+<form action="/" method="post">
+    <button type="submit">Arbitrage</button>
+</form>
+
+{% if table.shape[0] > 0 %}
+    <div class="table">
+        <table>
+            <thead>
+            <tr>
+                {% for col in table.columns %}
+                <th> {{col}} </th>
+                {% endfor %}
+            </tr>
+            </thead>
+            <tbody>
+                {% for i in range(table.shape[0]) %}
+                <tr>
+                    {% for col in table.columns %}
+                        <td>{{ table[col][i] }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+      </div>
+{% endif %}
+
+{% endblock %}
